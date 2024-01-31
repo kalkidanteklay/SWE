@@ -1,4 +1,5 @@
 const user = require('../models/jobModel');
+const Job = require('../models/studentModel');
 async function searchJob(department){
     try {
         const allJobs = await Job.find();
@@ -9,4 +10,15 @@ async function searchJob(department){
         throw new Error('Error searching job');
     }
 }
-module.exports = {searchJob };
+
+async function searchUser(name){
+    try {
+        const allUsers = await user.find();
+        const matchingPeople = allUsers.filter(stu => stu.name === name);
+        return matchingPeople;
+    }
+    catch(error){
+        throw new Error('Error searching user');
+    }
+}
+module.exports = {searchJob, searchUser };
