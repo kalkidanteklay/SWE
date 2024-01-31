@@ -7,7 +7,7 @@ const StudentSchema = new Schema({
     name: { 
         type: String, 
         required: [true, 'please enter your name'], 
-        maxLength: 100 
+        maxLength: 10 
     },
     email: {
         type: String, 
