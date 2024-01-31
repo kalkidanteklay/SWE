@@ -19,4 +19,14 @@ router.put('/modify/:id',async(req,res)=>{
 })
 router.get('/', profileControll.index);
 
+router.delete('modify/:id',async(req,res)=>{
+    const userId = req.params.id;
+    try {
+        const result = await profileControll.deleteUserById(userId);
+        res.json({msg:'Profile modified Succesfully'});
+    } catch(error){
+        res.status(500).json({msg:'Internal Server Error'});
+    }
+});
+
 module.exports = router;

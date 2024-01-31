@@ -22,4 +22,21 @@ async function updateUserById(userId,updateValues){
         throw new Error('Error Updating user');
     }
 }
-module.exports = { updateUserById, index };
+
+
+async function deleteUserById(userId){
+    try {
+        const deletedUser = await User.findByIdAndDelete(userId);
+
+        if (!deletedUser) {
+            throw new Error('User not found');
+        }
+
+        // console.log(`User with ID ${userId} has been deleted successfully.`);
+        return deletedUser;
+    }
+    catch(error){
+        throw new Error('Error deleting user');
+    }
+}
+module.exports = { updateUserById, index, deleteUserById };
