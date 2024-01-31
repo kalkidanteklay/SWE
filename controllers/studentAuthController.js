@@ -30,7 +30,7 @@ exports.SignUp = async (req, res) => {
         res.redirect('/students');
     } catch (err) {
         handleErrors(err);
-        res.status(400).send('Error: user not created');
+        res.status(400).send(err.message);
     }
 };
 
@@ -47,7 +47,7 @@ exports.logIn = async (req, res) => {
         res.redirect('/students');
     } catch (err) {
         console.error('Login failed:', err);
-        res.status(400).json({});
+        res.status(400).send(err.message);
     }
 };
 
