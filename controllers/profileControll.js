@@ -1,12 +1,24 @@
 const asyncHandler = require("express-async-handler");
 const User = require('../models/studentModel');
+const Profile = require('../models/profileModel');
+
 
 //profile page
-const index = asyncHandler(
-    async(req, res, next) => {
-        res.send('profile page')
+const renderProfilePage = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        console.log(userId)
+        const user = await User.findOne({ _id: userId });
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+        // Now you can render the profile page using the found user
+        res.render('profile', { title: 'Profile', user });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
     }
-)
+};
 
 // editing profile
 
@@ -39,4 +51,4 @@ async function deleteUserById(userId){
         throw new Error('Error deleting user');
     }
 }
-module.exports = { updateUserById, index, deleteUserById };
+module.exports = { renderProfilePage, updateUserById, deleteUserById };

@@ -4,10 +4,36 @@ html
     title My Express App
     meta(charset="utf-8")
     //- link(rel="stylesheet", href="/styles/main.css")
+    style.
+      body, html {
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #333;
+        color: #fff;
+      }
+      nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+      nav ul li {
+        margin-right: 10px;
+      }
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+      }
 
   body
     header
-      h1 Talent outsourcing 
+      h2 Talent outsourcing 
       nav
         ul
           li
@@ -20,16 +46,16 @@ html
             a(href="/employer-auth/employerLogout") Log Out 
           li
             a(href="/employers")
-                button(type="button") Employer service
+              button(type="button") Employer service
           li
             button#openIndexButton Messaging
+          li 
+             a(href="/profile")
+                button(type="button") Profile
     script.
       document.getElementById('openIndexButton').addEventListener('click', () => {
         // Redirect the user to the index route of the messaging project
         window.location.href = 'http://localhost:3000/index';
       });
-           
-             
-    block content
 
-   
+    block content

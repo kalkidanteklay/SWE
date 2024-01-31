@@ -46,7 +46,7 @@ const requireJobOwner = async (req, res, next) => {
 
 // Middleware for Role-based Authorization
 const requireEmployerRole = (req, res, next) => {
-    console.log('User role:', req.user.role); // Log the user's role
+    // console.log('User role:', req.user.role); // Log the user's role
     if (req.user && req.user.role === 'employer') {
         next();
     } else {

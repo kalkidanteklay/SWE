@@ -27,7 +27,7 @@ exports.posted = asyncHandler(
       try{
         let jobs = await Jobs.find({ employer: req.user.id })
         res.render('studentposted', { jobs });
-        console.log(jobs) 
+        //console.log(jobs) 
       }catch(e){
         console.log(e.message)
       }
@@ -39,7 +39,7 @@ exports.candidate = asyncHandler(
     try{
       let candidate = await candidates.find()
       res.render('applied', { candidate });
-      console.log(candidate)
+      //console.log(candidate)
     }catch(e){
       console.log(e.message)
     }

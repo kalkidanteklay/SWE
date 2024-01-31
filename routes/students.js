@@ -17,9 +17,8 @@ router.post('/submit', async (req, res) => {
     try {
         // Fetch the student from the students collection based on the email
         const student = await Student.findOne({ email: req.body.Email });
-        console.log(req.body.Email)
 
-        console.log(student);
+        //console.log(student);
 
         if (!student) {
             return res.status(404).send('Student not found');
@@ -33,8 +32,7 @@ router.post('/submit', async (req, res) => {
             GPA: req.body.GPA,
         });
 
-        console.log(newApply)
-        console.log(req.body.Name)
+        
 
         await newApply.save();
 

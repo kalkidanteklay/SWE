@@ -28,7 +28,7 @@ app.use("/students", requireStudAuth, requireStudentRole, studentRouter);
 app.use("/employer-auth", employerAuthRouter)
 app.use("/student-auth", studentAuthRouter)
 app.use("/message", messageRouter);
-app.use("/profile", profileRouter);
+app.use("/profile", requireStudAuth, requireStudentRole, profileRouter);
 app.use("/search",searchJob);
 
 // View engine setup - for displaying the dynamic front end content

@@ -22,13 +22,14 @@ router.post('/submit', requireEmpAuth, async (req, res) => {
         let newJob = new Jobs({
             jobName: req.body.jobName,
             JobType: req.body.jobType,
+            department: req.body.department,
             GPA: req.body.gpa,
             Date: req.body.date,
             employer: employerId
         })
         await newJob.save()
-        res.send('Form submitted successfully')
-        console.log(newJob)
+        res.send('Form submitted successfully. <a href="/employers">Go back to Employers Service Page</a>');
+        // console.log(newJob)
     }catch(err){
           console.log(err.message)
           res.status(500).send('Internal server error');

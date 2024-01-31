@@ -35,15 +35,8 @@ let jobSchema = new mongoose.Schema({
     
     Date: {
         type: Date,
-        min: 0, 
-        max: 4.0, 
-        validate: {
-            validator: function(value) {
-                return value >= 0 && value <= 4.0;
-            },
-            message: 'GPA must be between 0 and 4.0'
-        }
-    },
+       
+           },
     
     employer: {type: mongoose.Schema.Types.ObjectId, ref :'Employer'}
 })

@@ -17,7 +17,7 @@ router.put('/modify/:id',async(req,res)=>{
     }
 
 })
-router.get('/', profileControll.index);
+router.get('/', profileControll.renderProfilePage);
 
 router.delete('modify/:id',async(req,res)=>{
     const userId = req.params.id;
