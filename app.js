@@ -12,6 +12,7 @@ const studentAuthRouter = require('./routes/studentAuthRoute')
 const { requireEmpAuth, requireEmployerRole } = require('./middleware/employerAuthMiddleware')
 const { requireStudAuth, requireStudentRole } = require('./middleware/studentAuthMiddleware')
 const cookieParser = require('cookie-parser')
+const searchJob = require('./routes/search');
 
 const port = 5000;
 
@@ -27,7 +28,8 @@ app.use("/students", requireStudAuth, requireStudentRole, studentRouter);
 app.use("/employer-auth", employerAuthRouter)
 app.use("/student-auth", studentAuthRouter)
 app.use("/message", messageRouter);
-app.use("/profile", profileRouter)
+app.use("/profile", profileRouter);
+app.use("/search",searchJob);
 
 // View engine setup - for displaying the dynamic front end content
 app.set("views", path.join(__dirname, "view"));
