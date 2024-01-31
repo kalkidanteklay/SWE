@@ -1,25 +1,47 @@
 const express = require('express');
 const app = express();
 const path = require('path')
-const port = 5000;
-
-//ROUTES
+const mongoose = require('mongoose');
 const indexRouter = require('./routes/index')
 const employerRouter = require('./routes/employers')
 const studentRouter = require('./routes/students')
 const messageRouter = require('./routes/message')
 const profileRouter = require('./routes/profile')
+const employerAuthRouter = require('./routes/employerAuthRoute')
+const studentAuthRouter = require('./routes/studentAuthRoute')
+const { requireEmpAuth, requireEmployerRole } = require('./middleware/employerAuthMiddleware')
+const { requireStudAuth, requireStudentRole } = require('./middleware/studentAuthMiddleware')
+const cookieParser = require('cookie-parser')
 
+const port = 5000;
+
+//middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+
+//ROUTES
 app.use("/", indexRouter);
-app.use("/employers", employerRouter);
-app.use("/students", studentRouter);
+app.use("/employers", requireEmpAuth, requireEmployerRole, employerRouter);
+app.use("/students", requireStudAuth, requireStudentRole, studentRouter);
+app.use("/employer-auth", employerAuthRouter)
+app.use("/student-auth", studentAuthRouter)
 app.use("/message", messageRouter);
 app.use("/profile", profileRouter)
 
-// View engine setup
-app.set("views", path.join(__dirname, "views"));
+// View engine setup - for displaying the dynamic front end content
+app.set("views", path.join(__dirname, "view"));
 app.set("view engine", "pug");
 
+// Set up mongoose connection
+mongoose.set("strictQuery", false);
+
+const mongoDB = "mongodb://localhost:27017/jobportal";
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+  console.log('connected to MongoDb')
+}
 
 //START THE SERVER  
 app.listen(port, () => {

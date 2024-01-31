@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title  Candidates 
+  body
+    h1  List of candidates
+    ul
+      each applied in candidate 
+        li Full Name - #{applied.Name}
+        li Age - #{applied.Age}
+        li GPA - #{applied.GPA}
+      //- a(href="#")
+      button(type="button") Hire
+      //- a(href="#")
+      button(type="button") Reject
+      hr
+
+    

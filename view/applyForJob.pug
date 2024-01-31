@@ -1,0 +1,17 @@
+// Form
+block content
+    h1 Submit Form
+    form(action="/students/submit", method="post")
+      label(for="name") Full name:
+      input(type="text", id="name", name="Name", required)
+      br
+      label(for="email") Email:
+      input(type="email", id="email", name="Email", required)
+      br
+      label(for="age") Age:
+      input(type="number", id="age", name="Age", required)
+      br
+      label(for="gpa") GPA:
+      input(type="number", id="gpa", name="GPA", step="0.1", required)
+      br
+      button(type="submit") Submit

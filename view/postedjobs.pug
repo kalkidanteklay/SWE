@@ -1,0 +1,15 @@
+extends layout
+
+block content
+
+    h1 job List
+    ul
+      each job in jobs 
+        li Job Name - #{job.jobName}
+        li Job Type - #{job.JobType}
+        li GPA - #{job.GPA}
+        li Date - #{job.Date}
+        br
+        a(href="/students/apply")
+            button(type="button") Apply for #{job.jobName}
+        hr
